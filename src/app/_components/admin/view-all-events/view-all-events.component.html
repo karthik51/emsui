@@ -1,0 +1,34 @@
+<div>
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title"><b>Events</b></h4>
+        </div>
+        <br><br>
+    </div>
+    <hr>
+    <div *ngIf="eventDetails">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+                <tr>                  
+                    <th>Title</th>
+                    <th>Poc</th>
+                    <th>Transportation</th>
+                    <th>Location</th>
+                    <th>Date</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let eventDetail of eventDetails">                   
+                    <td>{{ eventDetail.eventTitle}}</td>
+                    <td>{{ eventDetail.poc}}</td>
+                    <td>{{ eventDetail.isTransportation}}</td>
+                    <td>{{ eventDetail.eventLocation}}</td>
+                    <td>{{ eventDetail.eventDate | date:'medium'}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!eventDetails || eventDetails.length == 0">
+        There are no events available
+    </div>
+</div>

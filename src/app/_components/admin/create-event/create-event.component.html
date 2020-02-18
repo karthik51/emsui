@@ -1,0 +1,166 @@
+<div *ngIf="eventDetail">
+  <div class="row">
+    <div class="col-5 align-self-center">
+      <h4 class="page-title"><b>Your current registered events</b></h4>
+    </div>
+    <br><br>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5">
+              <h5 class="m-t-0"><img src="assets/images/vehicles/{{bookingDetail.vehicleImage}}" [alt]="bookingDetail.vehicleImage"
+                  style="width:200px;height:200px;">
+              </h5>
+            </div>
+            <div class="col-lg-offset-6  col-md-offset-6 col-sm-offset-6 mt-5">
+              <span class="pull-right"><span class="small">Booking Date:</span>&nbsp;&nbsp;&nbsp;{{bookingDetail.rideDate | date:'medium'}}</span>
+              <br>
+              <span class="pull-right"><span class="small">Ride Category:</span>&nbsp;&nbsp;&nbsp;{{bookingDetail.vehicleCategoryType}}</span>
+              <br>
+              <span class="pull-right"><span class="small">From Location:</span>&nbsp;&nbsp;&nbsp;{{bookingDetail.fromLocation | uppercase}}</span>
+              <br>
+              <span class="pull-right"><span class="small">To Location:</span>&nbsp;&nbsp;&nbsp;{{bookingDetail.toLocation | uppercase}}</span>
+              <br>
+              <span class="pull-left"><span class="small">Driver name:</span>&nbsp;&nbsp;&nbsp;{{bookingDetail.rideAcceptedByUser}}</span>
+              <br>
+              <span class="pull-left"><span class="small">Vehicle number:</span>&nbsp;&nbsp;&nbsp;{{bookingDetail.vehicleNumber | uppercase}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group m-b-0 text-right">
+            <button type="button" class="btn btn-danger waves-effect waves-light mr-1" (click)="cancelRide(bookingDetail.id)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-5 align-self-center">
+    <h4 class="page-title"><b>Create a event</b></h4>
+  </div>
+  <br><br>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="row">
+        <div class="col-9">
+          <div class="card">
+            <form class="form-horizontal mt-2" [formGroup]="eventForm" (ngSubmit)="createEvent()">
+              <div class="card-body">
+                <div class="form-group row">
+                  <label for="eventTitle" class="col-sm-3 text-left control-label col-form-label">Title</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text" id="eventTitle" name="eventTitle"
+                      autocomplete="off" maxlength="120" formControlName="eventTitle"
+                      [class.is-invalid]="EventForm['eventTitle'].touched && EventForm['eventTitle'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['eventTitle'].touched && EventForm['eventTitle'].errors?.required">
+                      Title is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="eventDescription" class="col-sm-3 text-left control-label col-form-label">
+                    Description</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text" name="eventDescription" id="eventDescription"
+                      autocomplete="off" maxlength="250" formControlName="eventDescription"
+                      [class.is-invalid]="EventForm['eventDescription'].touched && EventForm['eventDescription'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['eventDescription'].touched && EventForm['eventDescription'].errors?.required">
+                     Description is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="eventDate" class="col-sm-3 text-left control-label col-form-label">
+                    Date</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control date-uppercase" name="eventDate" id="eventDate"
+                      autocomplete="on"  formControlName="eventDate"
+                      [class.is-invalid]="EventForm['eventDate'].touched && EventForm['eventDate'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['eventDate'].touched && EventForm['eventDate'].errors?.required">
+                     Event Date is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="eventStartTime" class="col-sm-3 text-left control-label col-form-label">
+                    Start Time</label>
+                  <div class="col-sm-9">
+                    <input type="time" class="form-control date-uppercase" name="eventStartTime" id="eventStartTime"
+                      autocomplete="on"  formControlName="eventStartTime"
+                      [class.is-invalid]="EventForm['eventStartTime'].touched && EventForm['eventStartTime'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['eventStartTime'].touched && EventForm['eventStartTime'].errors?.required">
+                     Start time is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="eventEndTime" class="col-sm-3 text-left control-label col-form-label">
+                    End Time</label>
+                  <div class="col-sm-9">
+                    <input type="time" class="form-control date-uppercase" name="eventEndTime" id="eventEndTime"
+                      autocomplete="on"  formControlName="eventEndTime"
+                      [class.is-invalid]="EventForm['eventEndTime'].touched && EventForm['eventEndTime'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['eventEndTime'].touched && EventForm['eventEndTime'].errors?.required">
+                     End time is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="eventLocation" class="col-sm-3 text-left control-label col-form-label">
+                    Location</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control text-uppercase" name="eventLocation" id="eventLocation"
+                      autocomplete="on"  formControlName="eventLocation"
+                      [class.is-invalid]="EventForm['eventLocation'].touched && EventForm['eventLocation'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['eventLocation'].touched && EventForm['eventLocation'].errors?.required">
+                     Location is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="isTransportation" class="col-sm-3 text-left control-label col-form-label">
+                  Transportation</label>
+                  <div class="col-sm-9">
+                    <input type="checkbox" class="form-control date-uppercase" name="isTransportation" id="isTransportation"
+                      autocomplete="on"  formControlName="isTransportation"
+                      [class.is-invalid]="EventForm['isTransportation'].touched && EventForm['isTransportation'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['isTransportation'].touched && EventForm['isTransportation'].errors?.required">
+                      Transportation is required</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="poc" class="col-sm-3 text-left control-label col-form-label">
+                  POC</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control date-uppercase" name="poc" id="poc"
+                      autocomplete="on"  formControlName="poc"
+                      [class.is-invalid]="EventForm['poc'].touched && EventForm['poc'].invalid">
+                    <div class="invalid-feedback"
+                      *ngIf="EventForm['poc'].touched && EventForm['poc'].errors?.required">
+                      POC is required</div>
+                  </div>
+                </div>
+              </div>                
+              
+              <div class="card-body">
+                <div class="form-group m-b-0 text-right">
+                  <button type="submit" class="btn btn-success waves-effect waves-light mr-1"
+                    [disabled]="eventForm.invalid">Create</button>
+                  <button type="button" class="btn btn-secondary waves-effect waves-light mr-1"
+                    (click)="clearForm()">Clear</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>       
+      </div>
+    </div>
+  </div>
+</div>
