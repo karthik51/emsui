@@ -170,8 +170,8 @@
                 <select class="custom-select col-12" id="ddUserType" formControlName="role"
                   [class.is-invalid]="RegistrationFormControls['role'].touched && RegistrationFormControls['role'].invalid">
                   <option [ngValue]="null">select</option>
-                  <option value="Customer">a Customer</option>
-                  <option value="Driver">a Driver</option>
+                  <option value="User">User</option>
+                  <option value="Volunteer">Volunteer</option>
                 </select>
                 <div class="invalid-feedback"
                   *ngIf="RegistrationFormControls['role'].touched && RegistrationFormControls['role'].invalid">
