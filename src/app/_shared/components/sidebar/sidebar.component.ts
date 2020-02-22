@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ADMIN_ROUTES, EMPLOYEE_ROUTES, CUSTOMER_ROUTES } from './menu-items';
+import { ADMIN_ROUTES, USER_ROUTES } from './menu-items';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -17,10 +17,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isAdminRole) {
       this.sidebarnavItems = ADMIN_ROUTES.filter(sidebarnavItem => sidebarnavItem);
-    } else if (this.authService.isEmployeeRole) {
-      this.sidebarnavItems = EMPLOYEE_ROUTES.filter(sidebarnavItem => sidebarnavItem);
-    } else if (this.authService.isCustomerRole) {
-      this.sidebarnavItems = CUSTOMER_ROUTES.filter(sidebarnavItem => sidebarnavItem);
-    }
+    } else if (this.authService.isUserRole) {
+      this.sidebarnavItems = USER_ROUTES.filter(sidebarnavItem => sidebarnavItem);
+    } 
   }
 }

@@ -1,20 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BookingDetailModel } from 'src/app/_models/booking-details.model';
+import { EventDetailModel } from 'src/app/_models/event-detail.model';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/_services/admin.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-view-all-bookings',
-  templateUrl: './view-all-bookings.component.html',
-  styleUrls: ['./view-all-bookings.component.css']
+  selector: 'app-view-all-events',
+  templateUrl: './view-all-events.component.html',
+  styleUrls: ['./view-all-events.component.css']
 })
-export class ViewAllBookingsComponent implements OnInit, OnDestroy {
+export class ViewAllEventsComponent implements OnInit, OnDestroy {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  bookingDetails: BookingDetailModel[];
+  eventDetails: EventDetailModel[];
 
   constructor(
     private route: ActivatedRoute,
@@ -22,14 +22,14 @@ export class ViewAllBookingsComponent implements OnInit, OnDestroy {
   ) { }
    
   ngOnInit() {
-    this.adminService.getAllBookings().subscribe(resolve => {
-
+    this.adminService.getAllEvents().subscribe(resolve => {
+      console.log("componment admin");
       this.dtOptions = {
         pagingType: 'full_numbers',
         pageLength: 10
       };
       
-      this.bookingDetails = resolve;
+      this.eventDetails = resolve;
       setTimeout(() => {
         this.dtTrigger.next();
       });

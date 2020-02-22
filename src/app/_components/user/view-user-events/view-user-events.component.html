@@ -1,0 +1,78 @@
+<div>
+    <div class="row">
+        <div class="col-5 align-self-center">
+            <h4 class="page-title"><b>Events</b></h4>
+        </div>
+        <br><br>
+    </div>
+    <hr>
+    <div *ngIf="eventDetails">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+                <tr>                  
+                    <th>Title</th>
+                    <th>Poc</th>
+                    <th>Transportation</th>
+                    <th>Location</th>
+                    <th>Date</th> 
+                    <th></th>                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let eventDetail of eventDetails">                   
+                    <td>{{ eventDetail.eventTitle}}</td>
+                    <td>{{ eventDetail.poc}}</td>
+                    <td>{{ eventDetail.isTransportation}}</td>
+                    <td>{{ eventDetail.eventLocation}}</td>
+                    <td>{{ eventDetail.eventDate | date:'medium'}}</td>
+                    <td>                            
+                        <button type="button" class="btn btn-success waves-effect waves-light mr-1" 
+                        (click)="registerEvent(eventDetail)">Register</button>
+                    </td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!eventDetails || eventDetails.length == 0">
+        There are no events available
+    </div>
+</div>
+<div>
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title"><b>Registered Events</b></h4>
+            </div>
+            <br><br>
+        </div>
+        <hr>
+        <div *ngIf="registerEvents">
+            <table datatable [dtOptions]="dtRegisterOptions" [dtTrigger]="dtRegisterTrigger" class="row-border hover">
+                <thead>
+                    <tr>                  
+                        <th>Title</th>
+                        <th>Poc</th>
+                        <th>Transportation</th>
+                        <th>Location</th>
+                        <th>Date</th> 
+                        <th></th>                  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let registerEvent of registerEvents">                   
+                        <td>{{ registerEvent.eventTitle}}</td>
+                        <td>{{ registerEvent.poc}}</td>
+                        <td>{{ registerEvent.isTransportation}}</td>
+                        <td>{{ registerEvent.eventLocation}}</td>
+                        <td>{{ registerEvent.eventDate | date:'medium'}}</td>
+                        <td>                            
+                            <button type="button" class="btn btn-warning waves-effect waves-light mr-1" 
+                            (click)="cancelEvent(registerEvent)">Cancel</button>
+                        </td>                   
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="!registerEvents || registerEvents.length == 0">
+            There are no events available
+        </div>
+    </div>

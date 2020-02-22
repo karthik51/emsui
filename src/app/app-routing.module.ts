@@ -5,14 +5,11 @@ import { LoginComponent } from './_components/auth/login/login.component';
 import { ErrorComponent } from './_shared/components/error/error.component';
 import { HomeComponent } from './_components/home/home.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { ViewSummaryComponent } from './_components/employee/view-summary/view-summary.component';
-import { BookARideComponent } from './_components/customer/book-a-ride/book-a-ride.component';
-import { VehicleCategoryResolver } from './_resolvers/vehicle-category.resolver';
-import { ViewPastRidesComponent } from './_components/customer/view-past-rides/view-past-rides.component';
-import { ViewPastRidesResolver } from './_resolvers/view-past-rides.resolver';
-import { ViewAllBookingsComponent } from './_components/admin/view-all-bookings/view-all-bookings.component';
-import { ViewAllBookingResolver } from './_resolvers/view-all-bookings.resolver';
-import { BookingAssignedToEmployeeResolver } from './_resolvers/booking-assigned-to-employee.resolver';
+import { ViewUserEventsComponent } from './_components/user/view-user-events/view-user-events.component';
+import { CreateEventComponent } from './_components/admin/create-event/create-event.component';
+import { ViewAllEventsComponent } from './_components/admin/view-all-events/view-all-events.component';
+import { ViewAllEventResolver } from './_resolvers/view-all-events.resolver';
+import { ViewUserEventResolver } from './_resolvers/view-user-events.resolver';
 
 
 const routes: Routes = [
@@ -28,41 +25,33 @@ const routes: Routes = [
         component: HomeComponent
       },
       {
+        path: ROUTE_PATH.ADMIN.CREATE_EVENT,
+        component: CreateEventComponent
+      },
+      {
         path: ROUTE_PATH.ADMIN.MAIN,
         children: [
           {
-            path: ROUTE_PATH.ADMIN.VIEW_ALL_BOOKINGS,
-            component: ViewAllBookingsComponent,
-           // resolve: {
-             // bookingDetails: ViewAllBookingResolver
-            //}
-          }
-        ]
-      },
-      {
-        path: ROUTE_PATH.EMPLOYEE.MAIN,
-        children: [
-          {
-            path: ROUTE_PATH.EMPLOYEE.VIEW_SUMMARY,
-            component: ViewSummaryComponent,
+            path: ROUTE_PATH.ADMIN.VIEW_ALL_EVENTS,
+            component: ViewAllEventsComponent,
             resolve: {
-              assignedBookings: BookingAssignedToEmployeeResolver
+              eventDetails: ViewAllEventResolver
             }
           }
         ]
       },
       {
-        path: ROUTE_PATH.CUSTOMER.MAIN,
+        path: ROUTE_PATH.USER.MAIN,
         children: [
           {
-            path: ROUTE_PATH.CUSTOMER.VIEW_PAST_RIDES,
-            component: ViewPastRidesComponent,
+            path: ROUTE_PATH.USER.VIEW_USER_EVENTS,
+            component: ViewUserEventsComponent,
             resolve: {
-              pastRides: ViewPastRidesResolver
+              viewUserEventResolver: ViewUserEventResolver
             }
           }
         ]
-      }
+      }     
     ]
   }
 ];

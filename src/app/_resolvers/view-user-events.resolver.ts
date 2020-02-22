@@ -1,4 +1,3 @@
-import { EmployeeService } from 'src/app/_services/employee.service';
 import { Observable, of } from 'rxjs';
 import { ActivatedRouteSnapshot, Router, Resolve } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
@@ -7,21 +6,21 @@ import { catchError } from 'rxjs/operators';
 import { BadRequestError } from '../_shared/error-handlers/bad-request-error';
 import { UnauthorizedError } from '../_shared/error-handlers/unauthorized-error';
 import { ROUTE_PATH } from '../_constants/route-name.constant';
-import { BookingDetailModel } from '../_models/booking-details.model';
+import { EventDetailModel } from '../_models/event-detail.model';
+import { AdminService } from '../_services/admin.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class BookingAssignedToEmployeeResolver implements Resolve<BookingDetailModel[]> {
+export class ViewUserEventResolver implements Resolve<EventDetailModel[]> {
     constructor(
-        private employeeService: EmployeeService,
+        private adminService: AdminService,
         private router: Router,
         private alertify: AlertifyService
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<BookingDetailModel[]> {
-        var name = sessionStorage.getItem('name');
-        return this.employeeService.getBookingsAssignedToEmployee(name)
+    resolve(route: ActivatedRouteSnapshot): Observable<EventDetailModel[]> {
+        return this.adminService.getUserEvents(sessionStorage.getItem('name'))
             .pipe(catchError((error: Response) => {
                 if (error instanceof BadRequestError) {
                     this.alertify.error(error.originalError);

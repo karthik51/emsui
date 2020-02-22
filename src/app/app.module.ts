@@ -25,11 +25,9 @@ import { NavComponent } from './_shared/components/nav/nav.component';
 import { NavigationComponent } from './_shared/components/header-navigation/navigation.component';
 import { SidebarComponent } from './_shared/components/sidebar/sidebar.component';
 import { HomeComponent } from './_components/home/home.component';
-import { ViewSummaryComponent } from './_components/employee/view-summary/view-summary.component';
-import { BookARideComponent } from './_components/customer/book-a-ride/book-a-ride.component';
-import { ViewPastRidesComponent } from './_components/customer/view-past-rides/view-past-rides.component';
-import { ViewAllBookingsComponent } from './_components/admin/view-all-bookings/view-all-bookings.component';
-
+import { CreateEventComponent } from './_components/admin/create-event/create-event.component';
+import { ViewAllEventsComponent } from './_components/admin/view-all-events/view-all-events.component';
+import { ViewUserEventsComponent } from './_components/user/view-user-events/view-user-events.component';
 
 
 @NgModule({
@@ -40,11 +38,10 @@ import { ViewAllBookingsComponent } from './_components/admin/view-all-bookings/
     NavComponent,
     NavigationComponent,
     SidebarComponent,
-    HomeComponent,
-    ViewSummaryComponent,
-    BookARideComponent,
-    ViewPastRidesComponent,
-    ViewAllBookingsComponent
+    HomeComponent,    
+    CreateEventComponent,    
+    ViewAllEventsComponent,
+    ViewUserEventsComponent
   ],
   imports: [
     BrowserModule,

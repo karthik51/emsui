@@ -26,6 +26,7 @@ export class AuthService {
 
                 if (user) {
                     sessionStorage.setItem('token', user.Token);
+                    sessionStorage.setItem('id', user.Id);
                     sessionStorage.setItem('name', user.UserName);
                     this.assignLoggedInUserName(user);
                 }
@@ -70,13 +71,9 @@ export class AuthService {
         return (this.userLoggedInRoles.indexOf(ROLE_NAME.ADMIN) > -1)
     }
 
-    get isEmployeeRole(): boolean {
-        return (this.userLoggedInRoles.indexOf(ROLE_NAME.EMPLOYEE) > -1)
-    }
-
-    get isCustomerRole(): boolean {
-        return (this.userLoggedInRoles.indexOf(ROLE_NAME.CUSTOMER) > -1)
-    }
+    get isUserRole(): boolean {
+        return (this.userLoggedInRoles.indexOf(ROLE_NAME.USER) > -1)
+    }    
 
     parseValueFromToken(propertyName: string): string {
         let parsedValue: string = null;

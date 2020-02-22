@@ -22,7 +22,7 @@ export class AlertifyService {
         } else {
         }
       })
-      .set({ title: 'OTMS' });
+      .set({ title: 'EMS' });
   }
 
   success(message) {

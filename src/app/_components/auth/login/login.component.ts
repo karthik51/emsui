@@ -71,11 +71,9 @@ export class LoginComponent implements OnInit {
   get UserRoute(): string {
     let userRoute: string;
 
-    if (this.authService.isCustomerRole) {
-      userRoute = ROUTE_PATH.CUSTOMER.MAIN + '/' + ROUTE_PATH.CUSTOMER.BOOK_A_RIDE;
-    } else if (this.authService.isEmployeeRole) {
-      userRoute = ROUTE_PATH.EMPLOYEE.MAIN + '/' + ROUTE_PATH.EMPLOYEE.VIEW_SUMMARY;
-    } else {
+    if (this.authService.isUserRole) {
+      userRoute = ROUTE_PATH.USER.MAIN + '/' + ROUTE_PATH.USER.VIEW_USER_EVENTS;
+    }else {
       userRoute = ROUTE_PATH.HOME;
     }
 
