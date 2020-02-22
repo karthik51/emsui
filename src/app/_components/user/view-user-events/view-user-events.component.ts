@@ -74,12 +74,10 @@ export class ViewUserEventsComponent implements OnInit, OnDestroy {
     });   
   }
 
-<<<<<<< HEAD
   cancelEvent(eventDetail:EventDetailModel):void{
 
   }
-=======
->>>>>>> 96d2f1d0a1c534466f69b4a5d25dea4a8d9f73a3
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
