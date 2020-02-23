@@ -1,16 +1,16 @@
 <div *ngIf="eventDetails">
         <h3 class="page-title"><b>Events</b></h3> 
-                    <div class="container" *ngFor="let eventDetail of eventDetails">
+                    <!--div class="container" *ngFor="let eventDetail of eventDetails"-->
                              
                             <!-- Card deck -->
-                            <div class="card-deck row">
+                            <!--div class="card-deck row"-->
                             
-                              <div class="col-xs-12 col-xs-6 col-md-4">
+                              <div *ngFor="let eventDetail of eventDetails; index as i;">
                               <!-- Card -->
                               <div class="card">                            
                                 <!--Card image-->
                                 <div class="view overlay">
-                                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/{{i+1}}.jpg" alt="Card image cap">
                                   <a href="#!">
                                     <div class="mask rgba-white-slight"></div>
                                   </a>
@@ -32,8 +32,8 @@
                                 </div>                            
                               </div>
                               <!-- Card -->
-                              </div>  
-                            </div>
+                              <!--/div>  
+                            </div-->
                             <!-- Card deck -->                              
                         </div>               
     </div>   
