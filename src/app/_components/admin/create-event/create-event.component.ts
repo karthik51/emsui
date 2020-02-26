@@ -36,16 +36,18 @@ export class CreateEventComponent implements OnInit {
   }
 
   buildForm(): FormGroup {
+    var currentUser = [{'userId' : sessionStorage.getItem('id'),'userName' : sessionStorage.getItem('name')}]; 
+    
     return this.fb.group({
       eventTitle: [null, Validators.required],
       eventDescription: [null, Validators.required],
-      eventDate: [null, Validators.required],
+      eventDate: [null, Validators.required], 
       eventStartTime: [null, Validators.required],
       eventEndTime: [null, Validators.required],
       eventLocation: [null, Validators.required],
       isTransportation: [false, Validators.required],
       poc: [null, Validators.required],
-      registerUser: [null]
+      registerUser: [currentUser]
     });
   }
 
