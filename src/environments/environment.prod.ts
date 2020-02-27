@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  authApiUrl: 'http://gateways2.azurewebsites.net/api/users/login',
-  baseApiUrl: 'http://gateways2.azurewebsites.net/api',
-  domain: 'gateways2.azurewebsites.net',
-  host: 'http://gateways2.azurewebsites.net/api/'
+  authApiUrl: 'http://emsgateway.azure-api.net/api/users/login',
+  baseApiUrl: 'http://emsgateway.azure-api.net/api',
+  domain: 'emsgateway.azure-api.net',
+  host: 'http://emsgateway.azure-api.net/api/'
 };
 
